@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-mocha -p ./tsconfig.mocha.json ./tests/*.spec.ts --timeout 60000",
+    "build": "rm -rf dist && tsc --build",
+    "prepare": "npm run build"
+
   },
   "keywords": [],
   "author": "",
