@@ -1,5 +1,4 @@
 import { Address, HDAccount, PrivateKeyAccount, PublicClient, createPublicClient, http, publicActions, zeroAddress } from "viem";
-import { mainnet } from "viem/chains"
 import { mnemonicToAccount } from 'viem/accounts'
 import { FACTORY_ADDRESS } from "../constants";
 import FactoryAbi from "../assets/Factory.abi.json"
@@ -14,13 +13,13 @@ export class WalletService {
     }
 
     async getAddress(): Promise<Address> {
-        const address = this._client.readContract({
+        const address = await this._client.readContract({
             address: FACTORY_ADDRESS,
             abi: FactoryAbi,
             functionName: "getWalletAddress",
             args: [this._signingAccount.address]
         })
 
-        return "0x0"
+        return address as Address
     }
 }
